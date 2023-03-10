@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.table_actions_column .MuiDataGrid-columnHeaderTitleContainer {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media screen and (max-width:500px) {
+  .delete_stock_btn,.edit_stock_btn{
+    text-indent: 150%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50px;
+  }
+  
+  .delete_stock_btn span{
+    position: relative;
+    left: 34px;
+  }
+  
+  .edit_stock_btn span{
+    position: relative;
+    left: 23px;
+  }
+}
+.css-slwmqg {
+  max-width: 100vw;
+}
