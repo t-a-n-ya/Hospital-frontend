@@ -20,9 +20,9 @@ export default function Details({ cellValues, patients, contact, kindetails }) {
   const handleClose = () => setOpen(false);
   const handleChange = () => setOpen(true);
 
-  let patientArray = patients.find(item => item.reg_no === cellValues.id)
-  let contactArray = contact.find(item => item.patientId === cellValues.id)
-  let KinDetailsArray = kindetails.filter(item => item.reg_no_fk === cellValues.id)
+  let patientArray = patients?.find(item => item.reg_no === cellValues.id)
+  let contactArray = contact?.find(item => item.patientId === cellValues.id)
+  let KinDetailsArray = kindetails?.filter(item => item.reg_no_fk === cellValues.id)
 
   return (
     <>

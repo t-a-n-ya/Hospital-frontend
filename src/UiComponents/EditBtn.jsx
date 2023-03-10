@@ -50,8 +50,8 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
         path: `${GET_CONTACTINFO}`,
       });
       let ContactDetailsArray = data.data.find(item => item.patientId === cellValues.id)
-      setphoneNo(ContactDetailsArray.Phone_no);
-      setEmail(ContactDetailsArray.email);
+      setphoneNo(ContactDetailsArray?.Phone_no);
+      setEmail(ContactDetailsArray?.email);
     };
 
     const getKinApiData = async () => {
@@ -60,12 +60,12 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
       });
 
       let KinDetailsArray = data.data.filter(item => item.reg_no_fk === cellValues.id)
-      setKinName(KinDetailsArray[0].name);
-      setKinrel(KinDetailsArray[0].relationship);
-      setKintel(KinDetailsArray[0].Tel_no);
-      setKinName2(KinDetailsArray[1].name);
-      setKinrel2(KinDetailsArray[1].relationship);
-      setKintel2(KinDetailsArray[1].Tel_no);
+      setKinName(KinDetailsArray[0]?.name);
+      setKinrel(KinDetailsArray[0]?.relationship);
+      setKintel(KinDetailsArray[0]?.Tel_no);
+      setKinName2(KinDetailsArray[1]?.name);
+      setKinrel2(KinDetailsArray[1]?.relationship);
+      setKintel2(KinDetailsArray[1]?.Tel_no);
     };
 
     getContactApiData();

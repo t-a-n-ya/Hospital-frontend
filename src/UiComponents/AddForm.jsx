@@ -36,7 +36,6 @@ export default function BasicTextFields({ handleClose, setShouldTableUpdate }) {
       relationship2: kinrel2,
       Tel_no2: kintel2,
     };
-    console.log(dataobj)
     let { isApiConnectionSucceess, data, e } = await postCall({
       path: `${CREATE_DATA}`,
       Data: dataobj,
@@ -60,7 +59,6 @@ export default function BasicTextFields({ handleClose, setShouldTableUpdate }) {
             id="outlined-basic"
             label="Registration no"
             variant="outlined"
-            autoFocus="true"
             type="number"
             onChange={(e) => setregNo(e.target.value)}
           />
