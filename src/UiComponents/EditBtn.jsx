@@ -20,6 +20,8 @@ const style = {
   boxShadow: 24,
   borderRadius: "5px",
   p: 4,
+  height:"100vh",
+  overflow:"scroll"
 };
 
 export default function TransitionsModal({ cellValues }) {
