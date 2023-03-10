@@ -24,7 +24,7 @@ const style = {
   overflow:"scroll"
 };
 
-export default function TransitionsModal({ cellValues }) {
+export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
 
   const [open, setOpen] = React.useState(false);
   const [regNo, setregNo] = React.useState("");
@@ -97,6 +97,7 @@ export default function TransitionsModal({ cellValues }) {
       updatedData: dataobj,
     });
     setOpen(false);
+    setShouldTableUpdate(true)
   };
 
   return (
@@ -138,6 +139,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="Registration no"
               variant="outlined"
+              type="number"
               value={regNo}
               onChange={(e) => setregNo(e.target.value)}
             />
@@ -149,6 +151,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="patient name"
               variant="outlined"
+              type="text"
               value={pName}
               onChange={(e) => setpName(e.target.value)}
             />
@@ -160,6 +163,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="patient Age"
               variant="outlined"
+              type="number"
               value={pAge}
               onChange={(e) => setpAge(e.target.value)}
             />
@@ -171,6 +175,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="Phone no"
               variant="outlined"
+              type="number"
               value={phoneNo}
               onChange={(e) => setphoneNo(e.target.value)}
             />
@@ -182,6 +187,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="email"
               variant="outlined"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -193,6 +199,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="Next to Kin name "
               variant="outlined"
+              type="text"
               value={kinName}
               onChange={(e) => setKinName(e.target.value)}
             />
@@ -202,8 +209,9 @@ export default function TransitionsModal({ cellValues }) {
               fullWidth
               required
               id="outlined-basic"
-              label="Next to Kin name "
+              label="Next to Kin relation "
               variant="outlined"
+              type="text"
               value={kinrel}
               onChange={(e) => setKinrel(e.target.value)}
             />
@@ -212,8 +220,9 @@ export default function TransitionsModal({ cellValues }) {
               fullWidth
               required
               id="outlined-basic"
-              label="Next to Kin name "
+              label="Next to Kin phone no"
               variant="outlined"
+              type="number"
               value={kintel}
               onChange={(e) => setKintel(e.target.value)}
             />
@@ -224,6 +233,7 @@ export default function TransitionsModal({ cellValues }) {
               id="outlined-basic"
               label="Next to Kin name "
               variant="outlined"
+              type="text"
               value={kinName2}
               onChange={(e) => setKinName2(e.target.value)}
             />
@@ -233,8 +243,9 @@ export default function TransitionsModal({ cellValues }) {
               fullWidth
               required
               id="outlined-basic"
-              label="Next to Kin name "
+              label="2nd Next to Kin relation"
               variant="outlined"
+              type="text"
               value={kinrel2}
               onChange={(e) => setKinrel2(e.target.value)}
             />
@@ -243,8 +254,9 @@ export default function TransitionsModal({ cellValues }) {
               fullWidth
               required
               id="outlined-basic"
-              label="Next to Kin name "
+              label="2nd Next to Kin phone no"
               variant="outlined"
+              type="number"
               value={kintel2}
               onChange={(e) => setKintel2(e.target.value)}
             />

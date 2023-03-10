@@ -7,7 +7,7 @@ import { postCall } from "../Api/helpers";
 import { CREATE_DATA } from "../Api/apiPath";
 import { useState } from "react";
 
-export default function BasicTextFields({ handleClose }) {
+export default function BasicTextFields({ handleClose, setShouldTableUpdate }) {
   const [regNo, setregNo] = useState("");
   const [pName, setpName] = useState("");
   const [pAge, setpAge] = useState("");
@@ -45,6 +45,7 @@ export default function BasicTextFields({ handleClose }) {
       console.log(data.message)
     }
     handleClose();
+    setShouldTableUpdate(true);
 
   };
 
@@ -60,6 +61,7 @@ export default function BasicTextFields({ handleClose }) {
             label="Registration no"
             variant="outlined"
             autoFocus="true"
+            type="number"
             onChange={(e) => setregNo(e.target.value)}
           />
 
@@ -70,6 +72,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="patient name"
             variant="outlined"
+            type="text"
             onChange={(e) => setpName(e.target.value)}
           />
 
@@ -80,6 +83,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="patient Age"
             variant="outlined"
+            type="number"
             onChange={(e) => setpAge(e.target.value)}
           />
           <TextField
@@ -89,6 +93,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="Phone no"
             variant="outlined"
+            type="number"
             onChange={(e) => setphoneNo(e.target.value)}
           />
 
@@ -99,6 +104,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="email"
             variant="outlined"
+            type="email"
             onChange={(e) => setEmail(e.target.value)}
           />
 
@@ -109,6 +115,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="Next to Kin name "
             variant="outlined"
+            type="text"
             onChange={(e) => setKinName(e.target.value)}
           />
 
@@ -119,6 +126,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="Next to Kin relation"
             variant="outlined"
+            type="text"
             onChange={(e) => setKinrel(e.target.value)}
           />
 
@@ -129,6 +137,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="Next to Kin phone no"
             variant="outlined"
+            type="number"
             onChange={(e) => setKintel(e.target.value)}
           />
 
@@ -139,6 +148,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="2nd Next to Kin name "
             variant="outlined"
+            type="text"
             onChange={(e) => setKinName2(e.target.value)}
           />
 
@@ -149,6 +159,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="2nd Next to Kin relation"
             variant="outlined"
+            type="text"
             onChange={(e) => setKinrel2(e.target.value)}
           />
 
@@ -159,6 +170,7 @@ export default function BasicTextFields({ handleClose }) {
             id="outlined-basic"
             label="2nd Next to Kin phone no"
             variant="outlined"
+            type="number"
             onChange={(e) => setKintel2(e.target.value)}
           />
 

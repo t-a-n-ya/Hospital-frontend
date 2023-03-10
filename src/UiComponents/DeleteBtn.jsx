@@ -9,13 +9,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { Box, Stack } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
-import GlobalContext from "../GlobalContextProvider";
 import { deleteCall } from "../Api/helpers";
 import { DELETE_DATA } from "../Api/apiPath";
 
 
-export default function ResponsiveDialog({ cellValues}) {
-  const {setIsTableUpdate } = React.useContext(GlobalContext);
+export default function ResponsiveDialog({ cellValues, setShouldTableUpdate}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -34,7 +32,7 @@ export default function ResponsiveDialog({ cellValues}) {
     });
     console.log(data);
     setOpen(false);
-    setIsTableUpdate(true)
+    setShouldTableUpdate(true)
   };
 
   return (
@@ -61,7 +59,7 @@ export default function ResponsiveDialog({ cellValues}) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            If you delete this, this will be delete permanentaly
+            If you delete this, this will be delete permanently
             from the databse.
           </DialogContentText>
         </DialogContent>

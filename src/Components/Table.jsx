@@ -9,8 +9,9 @@ import DeleteBtn from "../UiComponents/DeleteBtn"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export default function Table() {
-
   const [patients, setpatients] = useState([]);
+  const [shouldTableUpdate, setShouldTableUpdate] = useState(true);
+  
 
   const patient = [
     {
@@ -49,7 +50,7 @@ export default function Table() {
       headerClassName: "table_actions_column",
       align: "center",
       renderCell: (cellValues) => (
-        <EditBtn cellValues={cellValues}>Edit</EditBtn>
+        <EditBtn cellValues={cellValues} setShouldTableUpdate={setShouldTableUpdate}>Edit</EditBtn>
       ),
     },
     {
@@ -62,16 +63,19 @@ export default function Table() {
       headerClassName: "table_actions_column",
       align: "center",
       renderCell: (cellValues) => (
-        <DeleteBtn cellValues={cellValues}>Delete</DeleteBtn>
+        <DeleteBtn cellValues={cellValues} setShouldTableUpdate={setShouldTableUpdate}>Delete</DeleteBtn>
       ),
     },
   ];
 
   const getApiData = async () => {
-    let { isApiConnectionSucceess, data } = await getCall({
-      path: `${GET_PATIENT}`,
-    });
-    setpatients(data["data"]);
+    if (shouldTableUpdate) {
+      let { isApiConnectionSucceess, data } = await getCall({
+        path: `${GET_PATIENT}`,
+      });
+      setpatients(data["data"]);
+      setShouldTableUpdate(false)
+    }
   };
 
   // const getContactApiData = async () => {
@@ -103,12 +107,12 @@ export default function Table() {
     getApiData();
     // getContactApiData();
     // getKinApiData();
-  }, []);
+  }, [shouldTableUpdate]);
 
   return (
     <>
       <Box sx={{ margin: "auto", width: "300px", paddingTop: "30px" }}>
-        <AddBtn />
+        <AddBtn setShouldTableUpdate={setShouldTableUpdate} />
       </Box>
       <Box sx={{ height: "70vh", maxWidth: "90vw", margin: "auto", paddingTop: "50px" }}>
         <h2 >PATIENTS DETAILS</h2>

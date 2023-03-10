@@ -21,7 +21,7 @@ const style = {
   overflow:"scroll"
 };
 
-export default function TransitionsModal() {
+export default function TransitionsModal({setShouldTableUpdate}) {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -46,7 +46,7 @@ export default function TransitionsModal() {
               Create Patient Data
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 1 }}>
-              <AddForm handleClose={handleClose} />
+              <AddForm handleClose={handleClose} setShouldTableUpdate={setShouldTableUpdate} />
             </Typography>
           </Box>
         </Fade>
