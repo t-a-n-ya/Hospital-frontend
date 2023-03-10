@@ -20,8 +20,8 @@ const style = {
   boxShadow: 24,
   borderRadius: "5px",
   p: 4,
-  height:"100vh",
-  overflow:"scroll"
+  height: "100vh",
+  overflow: "scroll"
 };
 
 export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
@@ -39,7 +39,6 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
   const [kinrel2, setKinrel2] = React.useState("");
   const [kintel2, setKintel2] = React.useState("");
 
-  const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
   };
@@ -74,8 +73,6 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
     setregNo(cellValues.id);
     setpName(cellValues.row.p_name);
     setpAge(cellValues.row.p_Age);
-
-
   };
 
   const handleSubmit = async () => {

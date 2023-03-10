@@ -6,12 +6,13 @@ import { getCall } from "../Api/helpers";
 import AddBtn from "../UiComponents/AddBtn"
 import EditBtn from "../UiComponents/EditBtn"
 import DeleteBtn from "../UiComponents/DeleteBtn"
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import Details from "./Details";
 
 export default function Table() {
   const [patients, setpatients] = useState([]);
+  const [contact, setcontact] = React.useState([]);
+  const [kindetails, setkindetails] = React.useState([]);
   const [shouldTableUpdate, setShouldTableUpdate] = useState(true);
-  
 
   const patient = [
     {
@@ -22,7 +23,7 @@ export default function Table() {
     { field: "p_name", headerName: "patient name", flex: 1 },
     { field: "p_Age", headerName: "patient Age", flex: 1 },
     {
-      field: "view",
+      field: "action",
       headerName: "View",
       sortable: false,
       flex: 1,
@@ -31,14 +32,7 @@ export default function Table() {
       headerClassName: "table_actions_column",
       align: "center",
       renderCell: (cellValues) => (
-        <Button
-          startIcon={<VisibilityIcon />}
-          onClick={() => {
-            // setregNo(cellValues.row.reg_no)
-            // setpatientname(cellValues.row.p_name)
-            // setpAge(cellValues.row.p_Age)
-          }}
-        />
+        <Details cellValues={cellValues} patients={patients} contact={contact} kindetails={kindetails} />
       )
     },
     {
@@ -78,35 +72,25 @@ export default function Table() {
     }
   };
 
-  // const getContactApiData = async () => {
-  //   let { isApiConnectionSucceess, data } = await getCall({
-  //     path: `${GET_CONTACTINFO}`,
-  //   });
-  //   console.log(regNo)
-  //   let ContactDetailsArray = data.data.find(item => item.patientId === regNo)
-  //   setphoneNo(ContactDetailsArray?.Phone_no);
-  //   setEmail(ContactDetailsArray?.email);
-  // };
+  const getContactApiData = async () => {
+    let { isApiConnectionSucceess, data } = await getCall({
+      path: `${GET_CONTACTINFO}`,
+    });
+    setcontact(data["data"])
+  };
 
-  // const getKinApiData = async () => {
-  //   let { isApiConnectionSucceess, data } = await getCall({
-  //     path: `${GET_NEXTTOKIN}`,
-  //   });
-
-  //   let KinDetailsArray = data.data.filter(item => item.reg_no_fk === regNo)
-  //   setKinName(KinDetailsArray[0]?.name);
-  //   setKinrel(KinDetailsArray[0]?.relationship);
-  //   setKintel(KinDetailsArray[0]?.Tel_no);
-  //   setKinName2(KinDetailsArray[1]?.name);
-  //   setKinrel2(KinDetailsArray[1]?.relationship);
-  //   setKintel2(KinDetailsArray[1]?.Tel_no);
-  // };
+  const getKinApiData = async () => {
+    let { isApiConnectionSucceess, data } = await getCall({
+      path: `${GET_NEXTTOKIN}`,
+    });
+    setkindetails(data["data"])
+  };
 
 
   useEffect(() => {
     getApiData();
-    // getContactApiData();
-    // getKinApiData();
+    getContactApiData();
+    getKinApiData();
   }, [shouldTableUpdate]);
 
   return (
@@ -121,24 +105,11 @@ export default function Table() {
           rows={patients}
           columns={patient}
           pageSize={12}
+          autoHeight={true}
           disableSelectionOnClick={true}
           getRowId={(row) => row?.reg_no}
         />
       </Box>
-
-      {/* <Box sx={{ height: "60vh", maxWidth: "90vw", margin: "auto", paddingTop: "80px" }}>
-      <h4>Patient Reg No: {regNo}</h4>
-        <h4>Patient Name: {patientname}</h4>
-        <h4>Patient Age: {pAge}</h4>
-        <h4>Patient phoneNo: {phoneNo}</h4>
-        <h4>Patient email: {email}</h4>
-        <h4>Next to Kin: {kinName}</h4>
-        <h4>Next to kin Relation: {kinrel}</h4>
-        <h4>Next to kin Contact: {kintel}</h4>
-        <h4>2nd Next to kin Relation: {kinName2}</h4>
-        <h4>2nd Next to kin Relation: {kinrel2}</h4>
-        <h4>2nd Next to kin Relation: {kintel2}</h4>
-      </Box> */}
     </>
   );
 }
