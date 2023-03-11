@@ -90,12 +90,10 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
       kinrel2,
       kintel2
     };
-    console.log(dataobj);
     let { isApiConnectionSucceess, data, e } = await putCall({
       path: `${UPDATE_DATA}`,
       updatedData: dataobj,
     });
-    console.log(data);
     if (data.error) {
       toast.error(data.message);
     } else {
