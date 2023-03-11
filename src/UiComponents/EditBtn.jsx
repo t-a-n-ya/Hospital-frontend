@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 import Typography from "@mui/material/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import { Checkbox, Stack, TextField } from "@mui/material";
@@ -93,8 +94,15 @@ export default function TransitionsModal({ cellValues, setShouldTableUpdate }) {
       path: `${UPDATE_DATA}`,
       updatedData: dataobj,
     });
-    setOpen(false);
-    setShouldTableUpdate(true)
+    if(isApiConnectionSucceess){
+      setShouldTableUpdate(true);
+      setOpen(false);
+      toast.success(data.message);
+    }else{
+      toast.error(data.message);
+    }
+   
+    
   };
 
   return (

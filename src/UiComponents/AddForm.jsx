@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 import { Button, } from "@mui/material";
+import { toast } from "react-toastify";
 import { postCall } from "../Api/helpers";
 import { CREATE_DATA } from "../Api/apiPath";
 import { useState } from "react";
@@ -41,11 +42,12 @@ export default function BasicTextFields({ handleClose, setShouldTableUpdate }) {
       Data: dataobj,
     });
     if (!isApiConnectionSucceess) {
-      console.log(data.message)
-    }
-    handleClose();
+      toast.error(data.message);
+    }else{
     setShouldTableUpdate(true);
-
+    handleClose();
+    toast.success(data.message);
+    }
   };
 
   return (

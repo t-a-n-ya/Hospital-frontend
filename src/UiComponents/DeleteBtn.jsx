@@ -8,31 +8,31 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { Box, Stack } from "@mui/system";
+import { toast } from "react-toastify";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCall } from "../Api/helpers";
 import { DELETE_DATA } from "../Api/apiPath";
-
 
 export default function ResponsiveDialog({ cellValues, setShouldTableUpdate}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleClose = async () => {
-    setOpen(false);
-  };
   const handleSubmit = async () => {
     let { isApiConnectionSucceess, data, e } = await deleteCall({
       path: `${DELETE_DATA}`,
       dataObj: cellValues.id,
     });
-    console.log(data);
-    setOpen(false);
-    setShouldTableUpdate(true)
+    if(isApiConnectionSucceess){
+      setShouldTableUpdate(true);
+      setOpen(false);
+      toast.success(data.message);
+    }else{
+      toast.error(data.message);
+    }
   };
 
   return (
