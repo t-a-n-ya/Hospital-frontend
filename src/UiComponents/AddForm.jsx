@@ -41,7 +41,7 @@ export default function BasicTextFields({ handleClose, setShouldTableUpdate }) {
       path: `${CREATE_DATA}`,
       Data: dataobj,
     });
-    if (!isApiConnectionSucceess) {
+    if (data.error) {
       toast.error(data.message);
     }else{
     setShouldTableUpdate(true);
